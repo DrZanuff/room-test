@@ -13,6 +13,10 @@ This repository showcases:
 
 Explore the room, find the **Ice Key**, unlock the **Ice Door**, and enter the **Ice Dome** to complete the game.
 
+## Play Online (Web)
+
+- [itch.io Web Build](https://drzanuff.itch.io/rom-test)
+
 ## How To Run
 
 1. Open the project in **Godot 4.6**.
