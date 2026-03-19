@@ -17,6 +17,12 @@ Explore the room, find the **Ice Key**, unlock the **Ice Door**, and enter the *
 
 - [itch.io Web Build](https://drzanuff.itch.io/rom-test)
 
+## Walkthrough (Loom)
+
+Short video walkthrough of the environment, scene hierarchy, physics, and interaction logic:
+
+- [Loom walkthrough](https://www.loom.com/share/0bccf0dc922d4f2ca9f21eafbd76986f)
+
 ## How To Run
 
 1. Open the project in **Godot 4.6**.
