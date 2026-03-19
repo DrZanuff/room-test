@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://bs27v2u6l4d1b"]
+
+[sub_resource type="Animation" id="Animation_1vlvy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:omni_range")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4.038179]
+}
+
+[sub_resource type="Animation" id="Animation_iyo41"]
+resource_name = "idle"
+length = 1.9666667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.03, 1.9666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.596, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:omni_range")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.03, 1.9666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [4.038179, 11.677, 4.038179]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ubs0o"]
+_data = {
+&"RESET": SubResource("Animation_1vlvy"),
+&"idle": SubResource("Animation_iyo41")
+}
+
+[node name="PulseLight" type="OmniLight3D" unique_id=20222258]
+light_color = Color(0.02745098, 1, 1, 1)
+shadow_enabled = true
+omni_range = 4.038179
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1654354932]
+libraries/ = SubResource("AnimationLibrary_ubs0o")
+autoplay = &"idle"

@@ -1,18 +1,226 @@
 [gd_scene format=3 uid="uid://be17265x0lmgo"]
 
 [ext_resource type="Material" uid="uid://dyh8ld7gg76wr" path="res://objects/room/wall_material.tres" id="1_arn51"]
+[ext_resource type="PackedScene" uid="uid://bs27v2u6l4d1b" path="res://objects/pulse_light/pulse_light.tscn" id="2_n65uy"]
+[ext_resource type="Material" uid="uid://dnnf4cna1y8r3" path="res://objects/room/ice_material.tres" id="3_ukm1q"]
+[ext_resource type="PackedScene" uid="uid://bikp38kw0ao" path="res://objects/ice_door/ice_door.tscn" id="4_tpntr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tpntr"]
+radius = 1.5668538
 
 [node name="TheRoom" type="Node3D" unique_id=1005435159]
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1413322191]
+[node name="Session1" type="CSGCombiner3D" parent="." unique_id=1413322191]
 use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=85397417]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18984985, -0.118772596, -0.56018066)
-size = Vector3(5.401428, 0.39013672, 4.1291504)
+[node name="CSGBox3D" type="CSGBox3D" parent="Session1" unique_id=85397417]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18984985, -0.118772596, 1.6980591)
+size = Vector3(5.401428, 0.39013672, 8.64563)
 material = ExtResource("1_arn51")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1045590952]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Session1" unique_id=1011447975]
+transform = Transform3D(1, 0, 0, 0, 0.92723614, -0.37447715, 0, 0.37447715, 0.92723614, -0.0037994385, 0.4201287, -4.9448657)
+size = Vector3(5.0293274, 1.3045654, 8.031677)
+material = ExtResource("1_arn51")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Session1" unique_id=533466606]
+transform = Transform3D(1, 0, 0, 0, 0.9999784, -0.006562412, 0, 0.006562412, 0.9999784, -0.0037994385, 1.8363703, -12.639236)
+size = Vector3(5.0293274, 1.515564, 8.031677)
+material = ExtResource("1_arn51")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Session1" unique_id=813040379]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.143445, -0.118772596, 3.9164352)
+size = Vector3(5.401428, 0.39013672, 3.7852325)
+material = ExtResource("1_arn51")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Session1" unique_id=1045590952]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3626924, 1.3026751, -0.5601196)
 size = Vector3(0.6958313, 3.2330322, 4.7598877)
 material = ExtResource("1_arn51")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Session1" unique_id=479563305]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2731395, 1.3026751, -0.5601196)
+size = Vector3(0.6958313, 3.2330322, 4.7598877)
+material = ExtResource("1_arn51")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Session1" unique_id=835423339]
+transform = Transform3D(1, 0, 0, 0, 0.9522307, -0.30537957, 0, 0.30537957, 0.9522307, 2.4118943, 1.8851669, -5.510499)
+size = Vector3(0.59742737, 4.531769, 6.7202454)
+material = ExtResource("1_arn51")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Session1" unique_id=1963239342]
+transform = Transform3D(1, 0, 0, 0, 0.9522307, -0.30537957, 0, 0.30537957, 0.9522307, -2.3775382, 1.8851669, -5.510499)
+size = Vector3(0.59742737, 4.531769, 6.7202454)
+material = ExtResource("1_arn51")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Session1" unique_id=716218256]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8466363, 1.3026751, 2.00247)
+size = Vector3(5.8709793, 3.2330322, 1.1153107)
+material = ExtResource("1_arn51")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Session1" unique_id=509349647]
+transform = Transform3D(0.9823983, -0.18679841, 0, 0, 0, 1.0000001, -0.1867984, -0.9823984, 0, 7.43314, 3.3197832, 4.8574495)
+polygon = PackedVector2Array(0.07068348, 2.8170261, 0.23789692, 2.4385958, 0.3963089, 1.4265151, 0.36110592, 0.07120705, -0.026124, -0.63284874, -1.0399427, -1.5362005, -0.53717995, -2.0948248, 0.175066, -2.6255178, 1.1666241, -1.9830995, 1.87887, -0.34912395, 2.018526, 2.2205477, 1.1247272, 3.6590052, -0.2439022, 3.7148678, -0.39752388, 3.4495213)
+depth = 5.29
+material = ExtResource("1_arn51")
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="Session1" unique_id=1796338198]
+transform = Transform3D(0.9910299, 0.13364026, 5.8416014e-09, 0, -4.371139e-08, 1, 0.13364026, -0.9910299, -4.3319293e-08, -0.6377473, 2.6695144, 6.1085215)
+polygon = PackedVector2Array(-2.6186068, 4.59142, -2.5980856, 3.914156, -2.4749463, 2.8264294, -2.1670973, 1.9234109, -1.1409422, 0.7125454, 0.7471869, 0.28155947, 2.1427636, 0.42522144, 2.676364, 0.11737347, 2.3069487, -0.8061681, -0.17635322, -1.1550617, -4.239937, -1.1140146, -4.2399373, 5.1044984)
+depth = 3.25
+material = ExtResource("1_arn51")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Session1" unique_id=1263904262]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -3.8165214, 1.4468391, 3.287909)
+operation = 2
+radius = 0.36035156
+height = 3.2062988
+material = ExtResource("1_arn51")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Session1" unique_id=1389816238]
+transform = Transform3D(-3.8609898e-08, -0.8832915, 0.4688242, 1, -4.371139e-08, 0, 2.0492957e-08, 0.4688242, 0.8832915, -3.7774415, 1.4468391, 5.5714297)
+operation = 2
+radius = 0.36035156
+height = 4.234497
+material = ExtResource("1_arn51")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Session1" unique_id=1943876362]
+transform = Transform3D(-7.109904e-10, -0.01626569, 0.9998678, 1, -4.371139e-08, -1.5690409e-15, 4.370561e-08, 0.9998678, 0.01626569, -0.6422334, 1.4468391, 7.368009)
+operation = 2
+radius = 0.36035156
+height = 4.234497
+material = ExtResource("1_arn51")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Session1" unique_id=1098888154]
+transform = Transform3D(1, 0, 0, 0, 0.9999784, -0.006562412, 0, 0.006562412, 0.9999784, -0.121479034, 3.489075, -12.654681)
+size = Vector3(6.434578, 6.2226257, 8.031677)
+material = ExtResource("1_arn51")
+
+[node name="Lights" type="Marker3D" parent="Session1" unique_id=1429737007]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Session1/Lights" unique_id=839606063]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9535556, 2.1423013, 3.9955769)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Session1/Lights" unique_id=1676089186]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2370033, 2.1423013, 0.9582689)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Session1" unique_id=1184359784]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.309853, -16.126623)
+operation = 2
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Session1/CSGCombiner3D" unique_id=2065851891]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 1.933136)
+radius = 2.1606445
+height = 11.203674
+sides = 10
+smooth_faces = false
+material = ExtResource("1_arn51")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Session1/CSGCombiner3D" unique_id=1121831956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018218994, -1.1970229, 1.8149757)
+operation = 2
+size = Vector3(5.7651978, 2.5576172, 11.54911)
+material = ExtResource("1_arn51")
+
+[node name="Session2" type="CSGCombiner3D" parent="." unique_id=1252789938]
+use_collision = true
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Session2" unique_id=575184053]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Session2/CSGCombiner3D" unique_id=670883003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.439644, 0.9623294, 8.705898)
+radius = 3.7851563
+height = 3.8687134
+sides = 16
+material = ExtResource("1_arn51")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Session2/CSGCombiner3D" unique_id=221348185]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.439644, 1.4498756, 8.705898)
+operation = 2
+radius = 3.239746
+height = 4.214905
+sides = 16
+material = ExtResource("1_arn51")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Session2/CSGCombiner3D" unique_id=1353761046]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.276367, 1.0752869, 5)
+operation = 2
+size = Vector3(1.5527344, 3.1505737, 3)
+material = ExtResource("1_arn51")
+
+[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="Session2" unique_id=1150646955]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Session2/CSGCombiner3D2" unique_id=1910533485]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2734866, -0.8914466, 8.970052)
+radius = 1.0268555
+height = 1.8474121
+material = ExtResource("1_arn51")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Session2/CSGCombiner3D2" unique_id=1603068570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2734866, -0.8110633, 8.970052)
+radius = 0.88964844
+height = 2.0081787
+material = ExtResource("1_arn51")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Session2/CSGCombiner3D2" unique_id=68782226]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2734866, -0.7542701, 8.970052)
+operation = 2
+radius = 0.6875
+height = 2.1217651
+material = ExtResource("1_arn51")
+
+[node name="IceKey" type="Area3D" parent="Session2/CSGCombiner3D2" unique_id=1758694717 groups=["ICE_KEY"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2901807, 0.4164195, 8.973434)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Session2/CSGCombiner3D2/IceKey" unique_id=436286414]
+shape = SubResource("SphereShape3D_tpntr")
+debug_color = Color(0.76, 0, 0.13933338, 0.83137256)
+
+[node name="Lights" type="Marker3D" parent="Session2" unique_id=1167931010]
+
+[node name="PulseLight" parent="Session2/Lights" unique_id=20222258 instance=ExtResource("2_n65uy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4944553, 1.210701, 9.000667)
+
+[node name="Session3" type="CSGCombiner3D" parent="." unique_id=1032707252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3638175, -19.720419)
+use_collision = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Session3" unique_id=883675180]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2192845, -0.18810081)
+radius = 4.82959
+sides = 12
+smooth_faces = false
+material = ExtResource("3_ukm1q")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Session3" unique_id=1846519793]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3854892, -0.18810081)
+radius = 4.637207
+height = 5.3930664
+sides = 12
+smooth_faces = false
+material = ExtResource("3_ukm1q")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Session3" unique_id=422594755]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5247715, 0.3466606)
+operation = 2
+radius = 4.116211
+height = 5.671631
+sides = 12
+smooth_faces = false
+material = ExtResource("3_ukm1q")
+
+[node name="Lights" type="Marker3D" parent="Session3" unique_id=377849406]
+
+[node name="PulseLight" parent="Session3/Lights" unique_id=1084257961 instance=ExtResource("2_n65uy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8581443, 0)
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Session3" unique_id=1798911832]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9142468, -3.8624935)
+operation = 2
+radius = 1.0957031
+height = 2.6468506
+smooth_faces = false
+material = ExtResource("3_ukm1q")
+
+[node name="IceDoor" parent="Session3" unique_id=478838763 instance=ExtResource("4_tpntr")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.6552289e-07, 0.6435323, -6.725666)

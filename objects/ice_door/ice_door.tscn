@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://bikp38kw0ao"]
+
+[ext_resource type="Script" uid="uid://dwknaw855ytyn" path="res://objects/ice_door/ice_door.gd" id="1_mn7wx"]
+[ext_resource type="Material" uid="uid://dnnf4cna1y8r3" path="res://objects/room/ice_material.tres" id="1_ykcjw"]
+[ext_resource type="PackedScene" uid="uid://bs27v2u6l4d1b" path="res://objects/pulse_light/pulse_light.tscn" id="2_kgvba"]
+[ext_resource type="Material" uid="uid://cawd37bo2brhv" path="res://objects/ice_door/wood_material.tres" id="4_2e05k"]
+
+[sub_resource type="Animation" id="Animation_mn7wx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.7113032, 0.2105757, 0.006263733)]
+}
+
+[sub_resource type="Animation" id="Animation_56q2o"]
+resource_name = "close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.7113032, 0.2105757, 0.006263733)]
+}
+
+[sub_resource type="Animation" id="Animation_2e05k"]
+resource_name = "open"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.12924263, 0.19790277, 0.25, 0.6, 2.2173188),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(2.7113032, 0.2105757, 0.006263733), Vector3(2.711, 0.261, 0.006), Vector3(2.7113032, 0.2105757, 0.006263733), Vector3(2.711, 0.131, 0.006), Vector3(2.7113032, 0.2105757, 0.006263733), Vector3(2.7113032, 0.2105757, 0.006263733), Vector3(2.711, -2.319, 0.006)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vujdb"]
+_data = {
+&"RESET": SubResource("Animation_mn7wx"),
+&"close": SubResource("Animation_56q2o"),
+&"open": SubResource("Animation_2e05k")
+}
+
+[node name="IceDoor" type="CSGCombiner3D" unique_id=478838763]
+use_collision = true
+script = ExtResource("1_mn7wx")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=2101509478]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8110065, 0, 0)
+radius = 4.961016
+smooth_faces = false
+material = ExtResource("1_ykcjw")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="." unique_id=788351890]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8110065, 0, 0)
+operation = 2
+radius = 4.1796455
+smooth_faces = false
+material = ExtResource("1_ykcjw")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="." unique_id=395837652]
+transform = Transform3D(-0.027380783, -0.9996251, 0, 0.9996251, -0.027380783, 0, 0, 0, 1, -0.58217907, -0.015946498, 0)
+radius = 1.3378906
+height = 6.1779785
+smooth_faces = false
+material = ExtResource("1_ykcjw")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=729351339]
+transform = Transform3D(-0.027380783, -0.9996251, 0, 0.9996251, -0.027380783, 0, 0, 0, 1, -0.34633616, -0.009486512, 0)
+operation = 2
+radius = 1.0834961
+height = 8.15802
+smooth_faces = false
+material = ExtResource("1_ykcjw")
+
+[node name="Ligths" type="Marker3D" parent="." unique_id=812695192]
+
+[node name="PulseLight" parent="Ligths" unique_id=20222258 instance=ExtResource("2_kgvba")]
+
+[node name="PulseLight2" parent="Ligths" unique_id=167632373 instance=ExtResource("2_kgvba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.595963, 0, 0)
+
+[node name="Door" type="CSGBox3D" parent="." unique_id=395743829]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7113032, 0.2105757, 0.006263733)
+size = Vector3(0.6582031, 2.5360718, 2.6495514)
+material = ExtResource("4_2e05k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1573274413]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_vujdb")
+autoplay = &"close"

@@ -8,6 +8,8 @@ enum PlayerState {
 	JUMP
 }
 
+signal got_key
+
 @onready var _camera_pivot: Marker3D = %CameraPivot
 
 #Raycasts
@@ -19,8 +21,12 @@ enum PlayerState {
 
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 
+@onready var _player_sensor: Area3D = %PlayerSensor
+
+@onready var _player_interactions: PlayerInteractions = %PlayerInteractions
+
 @export var _speed: float = 0.8
-@export var _jump_strengh: float = 2.0
+@export var _jump_strengh: float = 50.0
 @export var _deceleration: float = 6.0
 @export var _move_speed_threshold: float = 0.15
 
@@ -43,9 +49,16 @@ var _is_jump_locked: bool = false
 var _player_state: PlayerState = PlayerState.IDLE
 
 func _ready() -> void:
+	_player_sensor.area_entered.connect(_player_interactions.handle_player_interaction)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if not _animation_player.animation_finished.is_connected(_on_animation_finished):
 		_animation_player.animation_finished.connect(_on_animation_finished)
+
+	# Ensure jump can emit `animation_finished` (looping jumps never finish).
+	var jump_animation := _animation_player.get_animation("jump")
+	if jump_animation:
+		jump_animation.loop_mode = Animation.LOOP_NONE
+
 	_set_state(PlayerState.IDLE)
 
 	# Ensure the raycasts are active and point downward for "in floor" validation.
@@ -56,13 +69,11 @@ func _ready() -> void:
 		ray.target_position = Vector3(0.0, -_ground_ray_length, 0.0)
 	# Apply the gravity normalization/clamp once at startup.
 	_gravity = _gravity
+	if jump_animation == null:
+		push_warning("Missing 'jump' animation in AnimationPlayer.")
 
 func _unhandled_input(event: InputEvent) -> void:
-	# Rotate the camera pivot horizontally (yaw) with the mouse.
-	if event is InputEventMouseMotion:
-		var mouse_delta_x: float = event.relative.x
-		if mouse_delta_x != 0.0:
-			_yaw += -mouse_delta_x * _mouse_sensitivity
+	_apply_mouse_look(event)
 
 func _process(_delta: float) -> void:
 	# Camera follows only position (X/Y/Z) and yaw, not the physics body's roll/pitch.
@@ -72,11 +83,16 @@ func _process(_delta: float) -> void:
 	_raycast_pivot.global_transform = player_global_origin
 
 func _physics_process(delta: float) -> void:
+	var on_floor := _is_on_floor()
+
 	# Jump (only if on the floor).
-	if Input.is_action_just_pressed("jump") and _is_on_floor() and not _is_jump_locked:
+	if Input.is_action_just_pressed("jump") and on_floor and not _is_jump_locked:
+		sleeping = false
 		_is_jump_locked = true
 		_set_state(PlayerState.JUMP)
-		apply_central_impulse(Vector3.UP * _jump_strengh)
+		# In this setup, applying central impulse does not produce upward velocity.
+		# Set jump takeoff velocity directly for consistent jumps.
+		linear_velocity = Vector3(linear_velocity.x, _jump_strengh, linear_velocity.z)
 
 	# Horizontal movement (XZ plane) driven by camera pivot orientation.
 	var forward := -_camera_pivot.global_transform.basis.z
@@ -118,6 +134,8 @@ func _is_on_floor() -> bool:
 	return false
 
 func _input(event):
+	_apply_mouse_look(event)
+
 	# Toggle lock with ESC key
 	if event.is_action_pressed("ui_cancel"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -156,3 +174,10 @@ func _set_state(new_state: PlayerState) -> void:
 func _play_animation(animation_name: StringName) -> void:
 	if _animation_player.current_animation != animation_name:
 		_animation_player.play(animation_name)
+
+func _apply_mouse_look(event: InputEvent) -> void:
+	# Use _input for reliability; keep _unhandled_input as fallback.
+	if event is InputEventMouseMotion:
+		var mouse_delta_x: float = event.relative.x
+		if mouse_delta_x != 0.0:
+			_yaw += -mouse_delta_x * _mouse_sensitivity

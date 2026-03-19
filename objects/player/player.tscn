@@ -1,15 +1,8 @@
 [gd_scene format=3 uid="uid://cxtvvkkxe8aac"]
 
 [ext_resource type="Script" uid="uid://bemfjp86dlsxa" path="res://objects/player/player.gd" id="1_cqmt1"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5lq1w"]
-
-[sub_resource type="Sky" id="Sky_cqmt1"]
-sky_material = SubResource("ProceduralSkyMaterial_5lq1w")
-
-[sub_resource type="Environment" id="Environment_g7ett"]
-background_mode = 2
-sky = SubResource("Sky_cqmt1")
+[ext_resource type="PackedScene" uid="uid://bei1nqu2p4jpe" path="res://objects/player/player_camera.tscn" id="2_g7ett"]
+[ext_resource type="Script" uid="uid://c5kvj6s2m4npc" path="res://objects/player/player_interactions.gd" id="2_ssrue"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5lq1w"]
 radius = 0.50636953
@@ -130,19 +123,14 @@ _data = {
 [node name="Player" type="RigidBody3D" unique_id=1204890826]
 script = ExtResource("1_cqmt1")
 _speed = 8.0
-_jump_strengh = 20.0
+
+[node name="PlayerInteractions" type="Node" parent="." unique_id=848931238]
+unique_name_in_owner = true
+script = ExtResource("2_ssrue")
 
 [node name="ClearNode" type="Node" parent="." unique_id=150229854]
 
-[node name="CameraPivot" type="Marker3D" parent="ClearNode" unique_id=432689936]
-unique_name_in_owner = true
-
-[node name="Camera3D" type="Camera3D" parent="ClearNode/CameraPivot" unique_id=1753180669]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.9521934, 0.3054959, 0, -0.3054959, 0.9521934, 0, 0.8696896, 1.277405)
-environment = SubResource("Environment_g7ett")
-
-[node name="CameraAnimationPlayer" type="AnimationPlayer" parent="ClearNode/CameraPivot" unique_id=1061435626]
+[node name="CameraPivot" parent="ClearNode" unique_id=735623303 instance=ExtResource("2_g7ett")]
 unique_name_in_owner = true
 
 [node name="RaycastPivot" type="Marker3D" parent="ClearNode" unique_id=781856668]
@@ -178,6 +166,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ow0dq")
 
 [node name="PlayerSensor" type="Area3D" parent="." unique_id=2063981141]
 unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerSensor" unique_id=1027841467]
 shape = SubResource("SphereShape3D_cqmt1")
