@@ -58,6 +58,12 @@ _data = {
 &"open": SubResource("Animation_2e05k")
 }
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_mn7wx"]
+radius = 0.8703425
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2e05k"]
+radius = 1.9234108
+
 [node name="IceDoor" type="CSGCombiner3D" unique_id=478838763]
 use_collision = true
 script = ExtResource("1_mn7wx")
@@ -106,3 +112,17 @@ material = ExtResource("4_2e05k")
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_vujdb")
 autoplay = &"close"
+
+[node name="DoorArea" type="Area3D" parent="." unique_id=278200526 groups=["ICE_DOOR"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.884649, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorArea" unique_id=1396004964]
+shape = SubResource("SphereShape3D_mn7wx")
+debug_color = Color(0.6505042, 0.51666594, 0, 0.7411765)
+
+[node name="FinishArea" type="Area3D" parent="." unique_id=534970358 groups=["ICE_DOME"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9372044, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FinishArea" unique_id=662640909]
+shape = SubResource("SphereShape3D_2e05k")
+debug_color = Color(0.9850784, 0.12214682, 0, 0.41960785)

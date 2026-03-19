@@ -166,8 +166,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ow0dq")
 
 [node name="PlayerSensor" type="Area3D" parent="." unique_id=2063981141]
 unique_name_in_owner = true
-collision_layer = 2
-collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerSensor" unique_id=1027841467]
 shape = SubResource("SphereShape3D_cqmt1")

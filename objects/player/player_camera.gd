@@ -1,6 +1,9 @@
 extends Marker3D
 
+class_name PlayerCamera
+
 @onready var _camera: Camera3D = %Camera3D
+@onready var _animation: AnimationPlayer = %CameraAnimationPlayer
 
 @export var _zoom_step: float = 0.3
 @export var _min_z: float = 0.8
@@ -32,3 +35,6 @@ func _set_camera_z(z_value: float) -> void:
 	var local_pos := _camera.position
 	local_pos.z = z_value
 	_camera.position = local_pos
+
+func shake_camera() -> void:
+	_animation.play("shake")

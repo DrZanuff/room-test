@@ -17,12 +17,15 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="uid://benfr38g8ytdl"
-GameUi="uid://c46p60ibt703l"
+GameManager="*uid://benfr38g8ytdl"
+GameUi="*uid://c46p60ibt703l"
 
 [global_group]
 
 ICE_KEY="This object is the ice key that opens the Ice Door"
+ICE_DOOR="This is an Ice Door"
+ICE_DOME="This is the finish line"
+BOTTOM_PIT="The game should restart if the player reach this."
 
 [input]
 

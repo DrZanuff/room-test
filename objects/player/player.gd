@@ -10,7 +10,7 @@ enum PlayerState {
 
 signal got_key
 
-@onready var _camera_pivot: Marker3D = %CameraPivot
+@onready var _camera_pivot: PlayerCamera = %CameraPivot
 
 #Raycasts
 @onready var _raycast1: RayCast3D = %RayCast1
@@ -49,7 +49,11 @@ var _is_jump_locked: bool = false
 var _player_state: PlayerState = PlayerState.IDLE
 
 func _ready() -> void:
+	GameManager.register_player(self)
+	
 	_player_sensor.area_entered.connect(_player_interactions.handle_player_interaction)
+	_player_sensor.area_exited.connect(_player_interactions.handle_area_exited)
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if not _animation_player.animation_finished.is_connected(_on_animation_finished):
 		_animation_player.animation_finished.connect(_on_animation_finished)
@@ -181,3 +185,6 @@ func _apply_mouse_look(event: InputEvent) -> void:
 		var mouse_delta_x: float = event.relative.x
 		if mouse_delta_x != 0.0:
 			_yaw += -mouse_delta_x * _mouse_sensitivity
+
+func shake_player_camera() -> void:
+	_camera_pivot.shake_camera()

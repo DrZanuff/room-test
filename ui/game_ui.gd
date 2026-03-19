@@ -14,10 +14,13 @@ func _ready() -> void:
 	
 func _hide_message() -> void:
 	_message_container.hide()
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if _call_back:
 		_call_back.call()
 
 func show_message(text: String, call_back: Callable) -> void:
+	_interaction_container.hide()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	_message_label.text = text
 	_call_back = call_back
 	_message_container.show()

@@ -8,6 +8,9 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_tpntr"]
 radius = 1.5668538
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_tpntr"]
+size = Vector3(138.62646, 1, 162.05612)
+
 [node name="TheRoom" type="Node3D" unique_id=1005435159]
 
 [node name="Session1" type="CSGCombiner3D" parent="." unique_id=1413322191]
@@ -224,3 +227,11 @@ material = ExtResource("3_ukm1q")
 
 [node name="IceDoor" parent="Session3" unique_id=478838763 instance=ExtResource("4_tpntr")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.6552289e-07, 0.6435323, -6.725666)
+
+[node name="BottomPit" type="Area3D" parent="." unique_id=688775871 groups=["BOTTOM_PIT"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.4827366, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BottomPit" unique_id=368267815]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.730713, 0, 3.6299286)
+shape = SubResource("BoxShape3D_tpntr")
+debug_color = Color(0.8131835, 0.029099973, 0.97, 0.85882354)
