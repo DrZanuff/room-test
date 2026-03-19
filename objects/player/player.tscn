@@ -1,0 +1,190 @@
+[gd_scene format=3 uid="uid://cxtvvkkxe8aac"]
+
+[ext_resource type="Script" uid="uid://bemfjp86dlsxa" path="res://objects/player/player.gd" id="1_cqmt1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5lq1w"]
+
+[sub_resource type="Sky" id="Sky_cqmt1"]
+sky_material = SubResource("ProceduralSkyMaterial_5lq1w")
+
+[sub_resource type="Environment" id="Environment_g7ett"]
+background_mode = 2
+sky = SubResource("Sky_cqmt1")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5lq1w"]
+radius = 0.50636953
+
+[sub_resource type="SphereMesh" id="SphereMesh_cqmt1"]
+
+[sub_resource type="Gradient" id="Gradient_g7ett"]
+offsets = PackedFloat32Array(0, 0.4964539, 1)
+colors = PackedColorArray(0.019607844, 0.16078432, 0, 1, 0.012935235, 0.8962536, 0.32915422, 1, 0.020156281, 0.15887135, 1.2032688e-08, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ssrue"]
+gradient = SubResource("Gradient_g7ett")
+
+[sub_resource type="Gradient" id="Gradient_5lq1w"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cqmt1"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g7ett"]
+noise = SubResource("FastNoiseLite_cqmt1")
+color_ramp = SubResource("Gradient_5lq1w")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_jnjyq"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gnkmh"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xkryw"]
+width = 1024
+height = 1204
+noise = SubResource("FastNoiseLite_gnkmh")
+color_ramp = SubResource("Gradient_jnjyq")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ow0dq"]
+albedo_texture = SubResource("GradientTexture2D_ssrue")
+roughness = 0.78
+roughness_texture = SubResource("NoiseTexture2D_xkryw")
+normal_enabled = true
+normal_scale = -1.33
+normal_texture = SubResource("NoiseTexture2D_g7ett")
+uv1_triplanar = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cqmt1"]
+radius = 0.62138647
+
+[sub_resource type="Animation" id="Animation_cqmt1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_g7ett"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 0.6333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.98, 0.98, 0.98), Vector3(1.01, 1.01, 1.01), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jnjyq"]
+resource_name = "jump"
+length = 0.8666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.041666668, 0.16666667, 0.23333333, 0.4, 0.56666666, 0.675, 0.71666664, 0.7916667, 0.8666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.95, 0.95, 0.95), Vector3(0.94, 0.94, 0.94), Vector3(1.1, 1.1, 1.1), Vector3(1.12, 1.12, 1.12), Vector3(1, 1, 1), Vector3(0.97, 0.97, 0.97), Vector3(1, 1, 1), Vector3(0.98, 0.98, 0.98), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ssrue"]
+resource_name = "move"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.97, 0.97, 0.97), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ssrue"]
+_data = {
+&"RESET": SubResource("Animation_cqmt1"),
+&"idle": SubResource("Animation_g7ett"),
+&"jump": SubResource("Animation_jnjyq"),
+&"move": SubResource("Animation_ssrue")
+}
+
+[node name="Player" type="RigidBody3D" unique_id=1204890826]
+script = ExtResource("1_cqmt1")
+_speed = 8.0
+_jump_strengh = 20.0
+
+[node name="ClearNode" type="Node" parent="." unique_id=150229854]
+
+[node name="CameraPivot" type="Marker3D" parent="ClearNode" unique_id=432689936]
+unique_name_in_owner = true
+
+[node name="Camera3D" type="Camera3D" parent="ClearNode/CameraPivot" unique_id=1753180669]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.9521934, 0.3054959, 0, -0.3054959, 0.9521934, 0, 0.8696896, 1.277405)
+environment = SubResource("Environment_g7ett")
+
+[node name="CameraAnimationPlayer" type="AnimationPlayer" parent="ClearNode/CameraPivot" unique_id=1061435626]
+unique_name_in_owner = true
+
+[node name="RaycastPivot" type="Marker3D" parent="ClearNode" unique_id=781856668]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5015372, 0)
+
+[node name="RayCast1" type="RayCast3D" parent="ClearNode/RaycastPivot" unique_id=288614664]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2678933, 0, 0.19960731)
+target_position = Vector3(0, -0.5, 0)
+
+[node name="RayCast2" type="RayCast3D" parent="ClearNode/RaycastPivot" unique_id=992911553]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31516743, 0, 0.19476867)
+target_position = Vector3(0, -0.5, 0)
+
+[node name="RayCast3" type="RayCast3D" parent="ClearNode/RaycastPivot" unique_id=1639457562]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29415655, 0, -0.29415783)
+target_position = Vector3(0, -0.5, 0)
+
+[node name="RayCast4" type="RayCast3D" parent="ClearNode/RaycastPivot" unique_id=987533503]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25738811, 0, -0.28890458)
+target_position = Vector3(0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1962979422]
+shape = SubResource("SphereShape3D_5lq1w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1751419864]
+mesh = SubResource("SphereMesh_cqmt1")
+surface_material_override/0 = SubResource("StandardMaterial3D_ow0dq")
+
+[node name="PlayerSensor" type="Area3D" parent="." unique_id=2063981141]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerSensor" unique_id=1027841467]
+shape = SubResource("SphereShape3D_cqmt1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=404406704]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_ssrue")
+autoplay = &"idle"
+next/jump = &"move"
+blend_times = [&"idle", &"jump", 0.1, &"idle", &"move", 0.1, &"jump", &"idle", 0.2, &"jump", &"jump", 0.2, &"jump", &"move", 0.2]

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://yy66yjw03p5m"]
+
+[ext_resource type="Script" uid="uid://bu33k0ihtmnpo" path="res://objects/game.gd" id="1_0uvjf"]
+[ext_resource type="PackedScene" uid="uid://be17265x0lmgo" path="res://objects/room/the_room.tscn" id="1_s35nk"]
+[ext_resource type="PackedScene" uid="uid://cxtvvkkxe8aac" path="res://objects/player/player.tscn" id="2_0uvjf"]
+
+[node name="Game" type="Node3D" unique_id=502886369]
+script = ExtResource("1_0uvjf")
+
+[node name="TheRoom" parent="." unique_id=1005435159 instance=ExtResource("1_s35nk")]
+
+[node name="Player" parent="." unique_id=1204890826 instance=ExtResource("2_0uvjf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78111434, 0)
+_jump_strengh = 3.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1630924180]
+transform = Transform3D(0.7905934, 0.027286552, 0.6117332, -0.6123414, 0.035229634, 0.78980803, 0, -0.9990066, 0.044561002, 0, 6, 0)
+shadow_enabled = true

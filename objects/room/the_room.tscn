@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://be17265x0lmgo"]
+
+[ext_resource type="Material" uid="uid://dyh8ld7gg76wr" path="res://objects/room/wall_material.tres" id="1_arn51"]
+
+[node name="TheRoom" type="Node3D" unique_id=1005435159]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1413322191]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=85397417]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18984985, -0.118772596, -0.56018066)
+size = Vector3(5.401428, 0.39013672, 4.1291504)
+material = ExtResource("1_arn51")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1045590952]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3626924, 1.3026751, -0.5601196)
+size = Vector3(0.6958313, 3.2330322, 4.7598877)
+material = ExtResource("1_arn51")
